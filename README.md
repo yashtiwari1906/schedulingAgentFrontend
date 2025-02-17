@@ -1,2 +1,1 @@
-# schedulingAgentFrontend
-Frontend for scheduling agent
+# BMLS-Frontend
