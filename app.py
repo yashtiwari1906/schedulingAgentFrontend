@@ -4,6 +4,7 @@ from forms.saveEmployeeAvailabilitySlots import saveEmployeeAvailabilitySlotsPag
 from forms.saveCandidateSlotPreference import saveCandidateSlotPreferencePage
 
 from forms.userRegistration import userRegistrationPage
+from pages.chat import chatPage
 from pages.home import home_page
 import streamlit as st
 
@@ -14,6 +15,7 @@ def main():
         "Select Page",
         [
             "Home",
+            "Chat",
             "User Registration",
             "Create New Job",
             "Insert Candidate Sheet",
@@ -24,6 +26,8 @@ def main():
 
     if page == "Home":
         home_page()
+    elif page == "Chat":
+        chatPage()
     elif page == "User Registration":
         userRegistrationPage()
     elif page == "Create New Job":
