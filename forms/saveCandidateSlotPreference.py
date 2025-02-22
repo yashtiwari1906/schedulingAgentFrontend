@@ -102,6 +102,8 @@ def showCandidateSlotOptions(jobId):
             with st.expander(day.capitalize()):
                 # List available time slots for that day.
                 for slot in list(slots.keys()):
+                    if len(slots[slot]) == 0:
+                        continue
                     # Mark the button label to indicate if it is selected.
                     label = slot
                     current_selection = st.session_state.selected_slot

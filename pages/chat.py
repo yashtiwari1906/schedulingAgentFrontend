@@ -12,10 +12,10 @@
 # if "messages" not in st.session_state:
 #     st.session_state.messages = []
 # if "user_id" not in st.session_state:
-#     st.session_state.user_id = None 
+#     st.session_state.user_id = None
 
 # if "user_email" not in st.session_state:
-#     st.session_state.user_email = None 
+#     st.session_state.user_email = None
 
 # st.header("Connection Information")
 # st.write(
@@ -27,7 +27,7 @@
 #     with st.form("connection_form"):
 #         email_input = st.text_input("Email", key="email_input_form")
 #         connect_button = st.form_submit_button("Connect")
-    
+
 #     if connect_button:
 #         if email_input and "@" in email_input:
 #             st.session_state["user_email"] = email_input
@@ -50,7 +50,6 @@
 # user_id = st.session_state["user_id"]
 # ws_url = f"ws://localhost:6000/ws/chat/?userId={user_id}"
 # st.write(f"**WebSocket URL:** {ws_url}")
-
 
 
 # # Display chat messages from history on app rerun
@@ -81,7 +80,7 @@
 #         time.sleep(0.05)
 
 # def websocket_handler(message):
-    
+
 #     try:
 #         with websockets.connect(ws_url) as websocket:
 #             websocket.send(message)
@@ -96,8 +95,8 @@
 #     # asyncio.set_event_loop(loop)
 #     # response = loop.run_until_complete(websocket_handler(message))
 #     response = websocket_handler(message)
-#     return response 
-    
+#     return response
+
 # # Display assistant response in chat message container
 # with st.chat_message("assistant"):
 #     response = send_message(prompt)
@@ -105,6 +104,7 @@
 # st.session_state.messages.append({"role": "assistant", "content": response})
 
 
+import queue
 from constants import LOCAL_URL, LOCAL_WEBSOCKET_URL
 import streamlit as st
 import asyncio
@@ -138,11 +138,13 @@ def chatPage():
         "Your user ID is generated as the part before '@' in your email."
     )
 
+    state_lock = threading.Lock()
+
     with st.container():
         with st.form("connection_form"):
             email_input = st.text_input("Email", key="email_input_form")
             connect_button = st.form_submit_button("Connect")
-        
+
         if connect_button:
             if email_input and "@" in email_input:
                 st.session_state["user_email"] = email_input
@@ -158,19 +160,23 @@ def chatPage():
     if not st.session_state["user_email"]:
         st.info("Connect using your email above to start chatting.")
         return
-    st_autorefresh(interval=2000, key="auto_refresh")
-    
-    def websocket_listener():
+    message_queue = queue.Queue()
+
+    def websocket_listener(session_state):
         try:
             with websockets.sync.client.connect(ws_url) as websocket:
                 response = websocket.recv()
                 print(response)
+                message_queue.put({"role": "assistant", "content": response})
+                with state_lock:
+                    session_state.append({"role": "assistant", "content": response})
+                print(session_state)
                 with st.chat_message("assistant"):
                     st.markdown(response)
                 return response
         except Exception as e:
             return f"❌ Error: {str(e)}"
-        
+
     # --------------------------------------
     # WebSocket Connection Setup
     # --------------------------------------
@@ -178,10 +184,15 @@ def chatPage():
     ws_url = f"{LOCAL_WEBSOCKET_URL}/ws/chat/?userId={user_id}"
     st.write(f"**WebSocket URL:** {ws_url}")
 
-    thread = threading.Thread(target=websocket_listener)
+    thread = threading.Thread(target=websocket_listener, args=[st.session_state])
     thread.start()
     st.subheader("Chat History")
     # Display chat messages from history on app rerun
+    while not message_queue.empty():
+        print(message_queue)
+        msg = message_queue.get()
+        st.session_state.messages.append(msg)
+
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
@@ -189,8 +200,7 @@ def chatPage():
     # --------------------------------------
     # WebSocket Communication Logic
     # --------------------------------------
-    
-        
+
     def websocket_handler(message):
         try:
             with websockets.sync.client.connect(ws_url) as websocket:
@@ -231,7 +241,7 @@ def chatPage():
     # --------------------------------------
     # Chat History Display
     # --------------------------------------
-   
+
 
 # if __name__ == "__main__":
 #     chatPage()

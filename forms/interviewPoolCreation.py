@@ -124,8 +124,9 @@ def interviewPoolCreationPage():
                 f"some error happened but problem was at the user side for pool_creator_email: {pool_creator_email}"
             )
             response_dict = response.json()
+            print(response_dict)
             st.write(
-                f"we faced some problem in processing your request read this message if you can do something: {response_dict["message"]}"
+                f"we faced some problem in processing your request read this message if you can do something: {response_dict}"
             )
         else:
             logging.info(
