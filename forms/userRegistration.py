@@ -51,7 +51,7 @@ def userRegistrationPage():
             )
             response_dict = response.json()
             st.write(
-                f"we faced some problem in processing your request read this message if you can do something: {response_dict["message"]}"
+                f"we faced some problem in processing your request read this message if you can do something: {response_dict}"
             )
         else:
             logging.info(f"some internal error occured for the email: {email}")

@@ -183,7 +183,7 @@ def saveCandidateSlotPreferencePage():
                 f"response from the saveCandidateSlotPreferenceWithAgent API hit for the candidate_email: {candidate_email} and jobId : {jobId}"
             )
             st.write(
-                f"Thanks for submitting we are creating user with , candidate_name: {candidate_name}, candidate_email: {candidate_email}"
+                f"Thanks for submitting we are creating your interview you will recieve a mail don't forget to tap yes on it"
             )
         elif response.status_code == 400:
             logging.info(
@@ -191,7 +191,7 @@ def saveCandidateSlotPreferencePage():
             )
             response_dict = response.json()
             st.write(
-                f"we faced some problem in processing your request read this message if you can do something: {response_dict["message"]}"
+                f"we faced some problem in processing your request read this message if you can do something: {response_dict}"
             )
         else:
             logging.info(

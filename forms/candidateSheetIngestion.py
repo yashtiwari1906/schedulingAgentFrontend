@@ -86,7 +86,7 @@ def candidateSheetIngestionPage():
                 )
                 response_dict = response.json()
                 st.write(
-                    f"we faced some problem in processing your request read this message if you can do something: {response_dict["message"]}"
+                    f"we faced some problem in processing your request read this message if you can do something: {response_dict}"
                 )
                 return
 
@@ -99,6 +99,6 @@ def candidateSheetIngestionPage():
 
             response_dict = response.json()
             data = response_dict["data"]
-            st.success("candidate sheet ingested successfully!")
+            st.success("candidate sheet ingested successfully I will start reaching out to the candidates from tomorrow!")
 
             # Here, you can add logic to handle the form submission, like saving the data to a database or further processing

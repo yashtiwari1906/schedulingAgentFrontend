@@ -89,14 +89,14 @@ def saveEmployeeAvailabilitySlotsPage():
             logging.info(
                 f"response from the createJob API hit for jobId: {jobId} the employee_email: {employee_email}"
             )
-            st.write(f"Thanks for submitting")
+            st.write(f"Thanks for submitting your availability: {employee_email}")
         elif response.status_code == 400:
             logging.info(
                 f"some error happened but problem was at the user side for jobId: {jobId} the employee_email: {employee_email}"
             )
             response_dict = response.json()
             st.write(
-                f"we faced some problem in processing your request read this message if you can do something: {response_dict["message"]}"
+                f"we faced some problem in processing your request read this message if you can do something: {response_dict}"
             )
         else:
             logging.info(
