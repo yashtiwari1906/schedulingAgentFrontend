@@ -130,6 +130,9 @@ def saveCandidateSlotPreferencePage():
     st.header("slot preference form")
     query_params = st.query_params
     jobId = query_params.get("jobId", None)
+    candidate_name = query_params.get("candidate_name", None)
+    candidate_email = query_params.get("candidate_email", None)
+    candidate_contact = query_params.get("candidate_contact", None)
 
     if jobId is None:
         st.toast(
@@ -139,9 +142,12 @@ def saveCandidateSlotPreferencePage():
         st.stop()  # Stops the script execution, preventing the rest of the page from loading
 
     # Example form inputs
-    candidate_name = st.text_input("candidate Name")
-    candidate_email = st.text_input("candidate email")
-    candidate_contact = st.text_input("candidate Contact")
+    # candidate_name = st.text_input("candidate Name")
+    # candidate_email = st.text_input("candidate email")
+    # candidate_contact = st.text_input("candidate Contact")
+    st.write(f"candidate name: {candidate_name}")
+    st.write(f"candidate email: {candidate_email}")
+    st.write(f"candidate contact: {candidate_contact}")
 
     showCandidateSlotOptions(jobId)
     if st.session_state.selected_slot is not None:
