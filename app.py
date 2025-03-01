@@ -8,6 +8,7 @@ from pages.chat import chatPage
 from pages.home import home_page
 import streamlit as st
 
+st.set_page_config(page_title="Main App", layout="wide")
 
 # This function will handle page navigation
 def main():
