@@ -3,15 +3,14 @@ import streamlit as st
 
 def home_page():
     # Title
-    st.title("Donna's Resume Scanning")
+    st.title("Donna - A title and a name ")
 
     # First Paragraph - related to resume scanning
-    st.subheader("Welcome to Donna's Resume Scanning")
+    st.subheader("Welcome to Donna's empire of personal assistance")
     st.markdown(
         """
-    Resume scanning has never been easier! Donna’s Resume Scanning tool is designed to help you assess resumes efficiently and effectively.
-    By using cutting-edge AI and machine learning algorithms, Donna ensures that each resume is analyzed with the highest level of accuracy.
-    Whether you are a recruiter or a job seeker, this tool streamlines the process, making it faster and more reliable than ever before.
+    Hi there I'm donna I am a virtual HR assistant I can help yo with your day to day task of hiring like scheduling the interview, giving you candidate and indutry hiring insights I can communicate with your candidates
+    and can solve any problems they are having, cause I'm donna I solve problems and I 'm empathetic and you can ask any number of time I won't feel bad No will.....wait I will 
     """
     )
     # Random Image
@@ -32,10 +31,7 @@ def home_page():
     # Second Paragraph - About the Create Jobnd navigation
     st.markdown(
         """
-    To get started, simply use the Ingest Resumeselow to fill out details about the job you're hiring for. 
-    Once you’ve provided the job details, you can upload resumes through other forms. 
-    After processing, you can navigate to another page where you'll be able to download your personalized report.
-    This process is streamlined to help you find the right candidate without any hassle.
+    As of now I can only help in scheduling your interview with the cnadidates through my cutting edge and affordable AI technology people are working hard really hard on me (oops) to build me
     """
     )
 

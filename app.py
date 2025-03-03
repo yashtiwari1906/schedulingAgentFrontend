@@ -4,8 +4,8 @@ from forms.saveEmployeeAvailabilitySlots import saveEmployeeAvailabilitySlotsPag
 from forms.saveCandidateSlotPreference import saveCandidateSlotPreferencePage
 
 from forms.userRegistration import userRegistrationPage
-from pages.chat import chatPage
-from pages.home import home_page
+from pagesHelp.chat import chatPage
+from pagesHelp.home import home_page
 import streamlit as st
 
 st.set_page_config(page_title="Main App", layout="wide")
