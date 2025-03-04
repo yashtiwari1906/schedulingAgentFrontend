@@ -3,7 +3,7 @@ import streamlit as st
 import requests
 import json
 
-from constants import CLOUD_RUN_URL, LOCAL_URL
+from constants import CLOUD_RUN_URL, AGENT_SERVER_URL
 
 
 def createJobWithBMLS(hr_name, hr_email, job_title, department, job_desc):

@@ -3,7 +3,7 @@ import streamlit as st
 import requests
 import json
 
-from constants import CLOUD_RUN_URL, LOCAL_URL
+from constants import CLOUD_RUN_URL, AGENT_SERVER_URL
 
 
 def userRegistrationWithAgent(
@@ -25,7 +25,7 @@ def userRegistrationWithAgent(
     employee_emails,
 ):
 
-    url = f"{LOCAL_URL}/api/external-communications/interview-pool-creation/"
+    url = f"{AGENT_SERVER_URL}/api/external-communications/interview-pool-creation/"
     print(f"fuck yeah")
     payload = json.dumps(
         {

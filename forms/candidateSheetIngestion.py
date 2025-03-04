@@ -18,12 +18,12 @@ import requests
 import streamlit as st
 import io
 
-from constants import CLOUD_RUN_URL, LOCAL_URL
+from constants import CLOUD_RUN_URL, AGENT_SERVER_URL
 
 
 def candidateSheetIngestionWithAgent(jobId, candidate_sheet):
 
-    url = f"{LOCAL_URL}/api/external-communications/candidate-sheet-insertion/?jobId={jobId}"
+    url = f"{AGENT_SERVER_URL}/api/external-communications/candidate-sheet-insertion/?jobId={jobId}"
 
     payload = {}
 
