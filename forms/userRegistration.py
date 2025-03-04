@@ -3,12 +3,12 @@ import streamlit as st
 import requests
 import json
 
-from constants import CLOUD_RUN_URL, LOCAL_URL
+from constants import CLOUD_RUN_URL, AGENT_SERVER_URL
 
 
 def userRegistrationWithAgent(name, email, contact, department, client_name):
 
-    url = f"{LOCAL_URL}/api/external-communications/user-registration/"
+    url = f"{AGENT_SERVER_URL}/api/external-communications/user-registration/"
 
     payload = json.dumps(
         {

@@ -4,11 +4,11 @@ import streamlit as st
 import requests
 import json
 
-from constants import CLOUD_RUN_URL, LOCAL_URL
+from constants import CLOUD_RUN_URL, AGENT_SERVER_URL
 
 
 def showSlotSelectOptions():
-    GET_API_URL = f"{LOCAL_URL}/api/external-communications/get-availability-slots/"
+    GET_API_URL = f"{AGENT_SERVER_URL}/api/external-communications/get-availability-slots/"
     response = requests.get(GET_API_URL)
     if response.status_code == 200:
         response_dict = (
@@ -52,7 +52,7 @@ def showSlotSelectOptions():
 
 def saveEmployeeAvailabilitySlotsWithAgent(jobId, employee_email, selected_slots):
 
-    url = f"{LOCAL_URL}/api/external-communications/save-employee-availability-slots/?jobId={jobId}"
+    url = f"{AGENT_SERVER_URL}/api/external-communications/save-employee-availability-slots/?jobId={jobId}"
 
     payload = json.dumps(
         {"email": employee_email, "reschedule": False, "slots": selected_slots}

@@ -3,7 +3,7 @@ import streamlit as st
 import requests
 import json
 
-from constants import CLOUD_RUN_URL, LOCAL_URL
+from constants import CLOUD_RUN_URL, AGENT_SERVER_URL
 
 
 def select_slot(month_week, day, slot):
@@ -26,7 +26,7 @@ def saveCandidateSlotPreferenceWithAgent(
     time_slot,
 ):
 
-    url = f"{LOCAL_URL}/api/external-communications/save-candidate-slot-preference/?jobId={jobId}"
+    url = f"{AGENT_SERVER_URL}/api/external-communications/save-candidate-slot-preference/?jobId={jobId}"
 
     payload = json.dumps(
         {
@@ -70,7 +70,7 @@ def saveCandidateSlotPreferenceWithAgent(
 
 def getCandidateSlotOptionsFromAgent(jobId):
 
-    url = f"{LOCAL_URL}/api/external-communications/get-candidate-slot-options/?jobId={jobId}"
+    url = f"{AGENT_SERVER_URL}/api/external-communications/get-candidate-slot-options/?jobId={jobId}"
 
     payload = {}
     headers = {"Content-Type": "application/json"}

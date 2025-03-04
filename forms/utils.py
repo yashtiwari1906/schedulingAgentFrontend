@@ -1,10 +1,10 @@
-from constants import LOCAL_URL
+from constants import AGENT_SERVER_URL
 import requests
 import streamlit as st
 
 
 def showJobsOnScreen(client_name):
-    GET_API_URL = f"{LOCAL_URL}/api/external-communications/get-active-jobs/?client_name={client_name}"
+    GET_API_URL = f"{AGENT_SERVER_URL}/api/external-communications/get-active-jobs/?client_name={client_name}"
     response = requests.get(GET_API_URL)
     if response.status_code == 200:
         response_dict = (
