@@ -26,7 +26,7 @@ jobs:
 
     - name: Build Docker Image
       run: |
-        docker build -t asia-south1-docker.pkg.dev/donna-449419/scheduling-agent/scheduling_agent_frontend:latest -f docker/scheduling_agent_frontend.Dockerfile .
+        docker build -t asia-south1-docker.pkg.dev/donna-449419/scheduling-agent/scheduling_agent_frontend:latest .
 
     - name: Push Docker Image to Artifact Registry
       run: |
