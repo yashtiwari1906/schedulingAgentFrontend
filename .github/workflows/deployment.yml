@@ -1,0 +1,33 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+    - name: Set up Google Cloud CLI
+      uses: google-github-actions/setup-gcloud@v0.2.1
+      with:
+        service_account_key: ${{ secrets.GCP_SA_KEY }} # Store your GCP service account key in GitHub secrets
+        project_id: donna-449419
+        export_default_credentials: true
+
+    - name: Configure Docker for Google Artifact Registry
+      run: |
+        gcloud auth configure-docker asia-south1-docker.pkg.dev
+
+    - name: Build Docker Image
+      run: |
+        docker build -t asia-south1-docker.pkg.dev/donna-449419/scheduling-agent/scheduling_agent_frontend:latest -f docker/scheduling_agent_frontend.Dockerfile .
+
+    - name: Push Docker Image to Artifact Registry
+      run: |
+        docker push asia-south1-docker.pkg.dev/donna-449419/scheduling-agent/scheduling_agent_frontend:latest
