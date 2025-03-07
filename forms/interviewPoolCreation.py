@@ -5,6 +5,17 @@ import json
 
 from constants import CLOUD_RUN_URL, AGENT_SERVER_URL
 
+def prepare_email_content(hr_email_content):
+    if "scheduling_link" not in hr_email_content:
+        hr_email_content += "\n here's the link which you can use for scheduling the interview: {}" 
+    else:
+        hr_email_content = hr_email_content.replace("scheduling_link", "{}")
+
+    email_content = """Hi {},
+    """+ hr_email_content+"""
+    """ 
+
+    return email_content
 
 def userRegistrationWithAgent(
     client_name,
@@ -77,10 +88,12 @@ def interviewPoolCreationPage():
     # st.write("Some meta data information")
     email_summary = "no use"  # st.text_input("email summary")
     job_description = "no use"  # st.text_input("job description")
-    email_heading = "no use"  # st.text_input("email heading")
-    email_content = "no use"  # st.text_input("email content")
-    meeting_heading = "no use"  # st.text_input("meeting heading")
-    meeting_content = "no use"  # st.text_input("meeting content")
+    email_heading = st.text_input("email heading")
+    st.write("Make sure to have a placeholder scheduling_link somewhere where you want to embed the dynamic scheduling link for the user")
+    hr_email_content = st.text_area("first of congratulations!!! ... ", height = 400)
+    email_content = prepare_email_content(hr_email_content)
+    meeting_heading = st.text_area("meeting heading", height = 100)
+    meeting_content = st.text_area("meeting content", height=300)
     st.write("information related to the job")
     role = st.text_input("role for which this interview pool is getting created")
     department = st.text_input(
