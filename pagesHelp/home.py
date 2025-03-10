@@ -36,7 +36,7 @@ def home_page():
     )
 
     st.subheader("User Instructions!!!")
-    st.subheader("I can't provide chat functionality because of the resource constraints but if you really want to try it contact me on email the main idea behind chat is that you don't even have to remember any steps or literally anything Donna will reeachout to you every single time and you can ask whatever you want,the number of times you want")
+    st.subheader("I can't provide chat functionality because of the resource constraints but if you really want to try it contact me on email the main idea behind chat is that you don't even have to remember any steps or literally anything Donna will reachout to you every single time and you can ask whatever you want,the number of times you want")
     st.markdown("""
                 * Fristly you need to make sure all the users are registered within the system so use the User Registration form for it.
                 * Then create a job with the system using hte Create New Job form fill the details and wait for a while
