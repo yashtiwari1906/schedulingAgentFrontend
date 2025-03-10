@@ -41,7 +41,7 @@ def home_page():
                 * Fristly you need to make sure all the users are registered within the system so use the User Registration form for it.
                 * Then create a job with the system using hte Create New Job form fill the details and wait for a while
                 * Now the employee's in the Panel need to give the slots of their availability through the employeee availability slots
-                * Then here's the link for a format of candidate sheet which you need to use to fill the name, contact, email of the candidates whom interview you want to schedule sheet - 
+                * Then here's the link for a format of candidate sheet which you need to use to fill the name, contact, email of the candidates whom interview you want to schedule sheet - https://docs.google.com/spreadsheets/d/1JRZMQjXWSFUeo317dLxYu7CxzZmNte57-kEyXOawphg/edit?usp=sharing
                 * Then once you have your sheet ready in the desired format use the Insert Candidate Sheet to insert the cnadidate sheet with system so that system can start reaching out to candidates
                 * This cycle will repeat mutliple times till you have completed you hiring employee availability -> calling candidates -> scheduling interivews
                 """)
